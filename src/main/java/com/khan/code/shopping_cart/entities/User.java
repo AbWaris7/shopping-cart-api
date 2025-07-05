@@ -3,10 +3,15 @@ package com.khan.code.shopping_cart.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @Builder
+@ToString
 @Entity
 @Table(name = "users")
 public class User {
@@ -21,8 +26,15 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
-    public User() {
+    @OneToMany(mappedBy = "user")
+    @Builder.Default
+    private List<Address> addresses = new ArrayList<>();
+
+    public void addAddress(Address address) {
+        addresses.add(address);
+        address.setUser(this);
     }
+
 
 
 }
