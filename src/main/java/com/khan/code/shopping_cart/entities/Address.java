@@ -25,5 +25,9 @@ public class Address {
     @Column(name = "state")
     private String state;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
 
 }
