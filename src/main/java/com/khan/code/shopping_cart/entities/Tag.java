@@ -1,10 +1,10 @@
 package com.khan.code.shopping_cart.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -20,4 +20,12 @@ public class Tag {
     private Integer id;
     @Column(name = "name")
     private String name;
+
+    @ManyToMany(mappedBy = "tags")
+    @ToString.Exclude
+    private Set<User> users = new HashSet<>();
+
+    public Tag(String name) {
+        this.name = name;
+    }
 }
