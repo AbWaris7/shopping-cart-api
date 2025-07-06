@@ -27,4 +27,9 @@ public class Profile {
     private LocalDate dateOfBirth;
     @Column(name = "loyalty_points")
     private Integer loyaltyPoints;
+
+    @OneToOne
+    @JoinColumn(name = "id")
+    @MapsId
+    private User user;
 }
